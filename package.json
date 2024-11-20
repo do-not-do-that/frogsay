@@ -1,12 +1,28 @@
 {
   "name": "frogsay",
   "version": "1.0.0",
-  "description": "",
+  "description": "A CLI tool that prints frog messages!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "homepage": "https://github.com/do-not-do-that/frogsay",
+  "bugs": {
+    "url": "https://github.com/do-not-do-that/frogsay/issues"
+  },
+  "keywords": [
+    "frogsay",
+    "ASCII",
+    "CLI"
+  ],
+  "author": "do-not-do-that",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/do-not-do-that/frogsay.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "license": "MIT"
 }
