@@ -24,5 +24,8 @@
     "dist"
   ],
   "type": "module",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
 }
