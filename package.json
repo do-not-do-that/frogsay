@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "ci": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "homepage": "https://github.com/do-not-do-that/frogsay",
@@ -27,6 +28,7 @@
   "type": "module",
   "license": "MIT",
   "devDependencies": {
+    "prettier": "^3.4.1",
     "typescript": "^5.7.2"
   },
   "dependencies": {
