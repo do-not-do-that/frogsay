@@ -1,5 +1,0 @@
----
-'frogsay': patch
----
-
-initial publish
