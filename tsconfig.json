@@ -17,7 +17,7 @@
     "noEmit": true,
 
     /* If transpiling with TypeScript: */
-    "module": "NodeNext",
+    "module": "Preserve",
     "lib": ["ES2022"]
   }
 }

@@ -1,6 +1,6 @@
 import { program } from 'commander';
-import { getAsciiArt } from './asciiArt.js';
-import { formatMessage } from './formatter.js';
+import { getAsciiArt } from './asciiArt';
+import { formatMessage } from './formatter';
 
 program
   .name('frogsay')
