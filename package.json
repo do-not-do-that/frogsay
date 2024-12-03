@@ -2,6 +2,9 @@
   "name": "frogsay",
   "version": "1.0.1",
   "description": "A CLI tool that prints frog messages!",
+  "bin": {
+    "frogsay": "./bin/frogsay.js"
+  },
   "main": "dist/index.js",
   "scripts": {
     "build": "tsup",

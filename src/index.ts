@@ -6,11 +6,15 @@ program
   .name('frogsay')
   .description('Prints a sad frog saying your message!')
   .version('1.0.0')
-  .argument('<message>', 'Message to display')
-  .action((message) => {
+  .option(
+    '-m, --message <message>',
+    'Message for the frog',
+    'No message provided',
+  )
+  .action((options) => {
     const art = getAsciiArt();
-    const formattedMessage = formatMessage(message, art);
-    // console.log(formattedMessage);
+    const formattedMessage = formatMessage(options.message, art);
+    console.log(formattedMessage);
   });
 
 program.parse();
