@@ -2,12 +2,13 @@
   "name": "frogsay",
   "version": "1.0.0",
   "description": "A CLI tool that prints frog messages!",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
-    "ci": "npm run build",
+    "build": "tsup",
+    "ci": "npm run build && npm run check-format && npm run check-exports",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
+    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "homepage": "https://github.com/do-not-do-that/frogsay",
@@ -27,10 +28,19 @@
   "files": [
     "dist"
   ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.js",
+      "default": "./dist/index.cjs"
+    }
+  },
   "type": "module",
   "license": "MIT",
   "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.0",
     "prettier": "^3.4.1",
+    "tsup": "^8.3.5",
     "typescript": "^5.7.2"
   },
   "dependencies": {
