@@ -1,2 +1,5 @@
 #!/usr/bin/env node
-require('../dist/index.js');
+import('../dist/index.js').catch((err) => {
+  console.error('Failed to load module:', err);
+  process.exit(1);
+});
