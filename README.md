@@ -4,6 +4,9 @@ frogsay는 페페의 ASCII 아트를 통해 여러분의 메시지를 더 귀엽
 
 frogsay로 당신의 말을 페페를 통해 전하세요! 🎉
 
+![image](https://github.com/user-attachments/assets/b476efd5-14c8-4c59-b9df-1fff84225aab)
+
+
 <br/>
 
 ## 🌟 주요 기능
@@ -59,7 +62,7 @@ CLI 사용법
 
 ### 🖼️ 실행 화면
 
-[추가 예정]
+![frogsay](https://github.com/user-attachments/assets/17e51e7b-fe93-445f-a7c9-913e5e1d7ae7)
 
 ### 🛠️ 개발자 참고 사항
 
