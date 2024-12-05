@@ -1,6 +1,6 @@
 {
   "name": "frogsay",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "A CLI tool that prints frog messages!",
   "bin": {
     "frogsay": "./bin/frogsay.js"
