@@ -1,7 +1,7 @@
 {
   "name": "frogsay",
-  "version": "1.1.0",
-  "description": "A CLI tool that prints frog messages!",
+  "version": "1.1.1",
+  "description": "frogsay - Make your frog speak!",
   "bin": {
     "frogsay": "./bin/frogsay.js"
   },
@@ -23,6 +23,7 @@
   },
   "keywords": [
     "frogsay",
+    "frog",
     "ASCII",
     "CLI"
   ],
