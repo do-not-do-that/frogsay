@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 export const pepeArt = `
 
 @@@@@@@@@@ ;* @@@@@@@@@@@@@@@@
@@ -33,6 +35,24 @@ export const pepeArt = `
 
 `;
 
+// 스타일링된 아스키 아트를 반환하는 함수
 export function getAsciiArt(): string {
-  return pepeArt;
+  return pepeArt
+    .split('\n') // 줄 단위로 나눔
+    .map(
+      (line) =>
+        line
+          .replace(/(~{2,}|!{4,})/g, (match) => {
+            // 연속된 ~ (2개 이상) 또는 ! (4개 이상)만 빨간색 적용
+            return chalk.red(match);
+          })
+          .split('')
+          .map((char) => {
+            if (char === '@') return chalk.white(char); // @는 흰색
+            if (char === ':' || char === ';') return chalk.green(char); // :와 ;는 초록색
+            return char; // 나머지는 그대로 반환
+          })
+          .join(''), // 문자 배열을 다시 문자열로 결합
+    )
+    .join('\n'); // 줄 배열을 다시 문자열로 결합
 }
