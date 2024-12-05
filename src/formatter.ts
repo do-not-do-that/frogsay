@@ -1,27 +1,14 @@
-// 유틸리티 함수: 문자 폭 계산
-function getDisplayWidth(text: string): number {
-  return [...text].reduce((width, char) => {
-    // 유니코드 범위를 확인해 한글이면 2칸, 아니면 1칸
-    return width + (char.charCodeAt(0) > 0x1100 ? 2 : 1);
-  }, 0);
-}
-
-// 유틸리티 함수: 문자 폭에 맞게 패딩 추가
-function padStringToWidth(text: string, width: number): string {
-  const currentWidth = getDisplayWidth(text);
-  const padding = width - currentWidth;
-  return text + ' '.repeat(padding > 0 ? padding : 0);
-}
+import boxen from 'boxen';
 
 export function formatMessage(message: string, art: string): string {
-  const maxLineLength = 40; // 말풍선 한 줄의 최대 길이
+  const maxLineLength = 40; // 한 줄 최대 길이
   const words = message.split(' ');
   const lines: string[] = [];
   let currentLine = '';
 
-  // 메시지를 최대 길이에 따라 줄로 나누기
+  // 메시지를 줄바꿈하여 배열로 구성
   words.forEach((word) => {
-    if (getDisplayWidth(currentLine + word) > maxLineLength) {
+    if (currentLine.length + word.length + 1 > maxLineLength) {
       lines.push(currentLine.trim());
       currentLine = word + ' ';
     } else {
@@ -32,22 +19,33 @@ export function formatMessage(message: string, art: string): string {
     lines.push(currentLine.trim());
   }
 
-  // 말풍선 테두리 생성
-  const bubbleWidth = Math.max(...lines.map(getDisplayWidth));
-  const border = '-'.repeat(bubbleWidth + 2);
-  const formattedLines = lines.map(
-    (line) => `| ${padStringToWidth(line, bubbleWidth)} |`,
-  );
+  // 줄들을 합쳐 최종 메시지 생성
+  const formattedText = lines.join('\n');
 
-  // 말풍선 아래와 페페 입 연결
-  const bubbleTail = `\\`.padStart(bubbleWidth + 3, ' '); // 슬래시 위치 조정
+  // boxen으로 박스를 생성
+  const boxedMessage = boxen(formattedText, {
+    padding: 1,
+    borderStyle: 'round',
+    borderColor: 'green',
+    backgroundColor: 'black',
+  });
 
-  // 말풍선과 페페 아트를 결합
-  const speechBubble = `
-   ${border}
-  ${formattedLines.join('\n  ')}
-   ${border}
-  ${bubbleTail}
-  `;
-  return `${speechBubble}\n${art}`;
+  // 아스키 아트를 줄 단위로 분해
+  const artLines = art.split('\n');
+  const boxLines = boxedMessage.split('\n');
+
+  // 20번째 줄에 박스를 병렬로 추가
+  const insertLineIndex = 19; // 배열은 0부터 시작하므로 20번째 줄은 index 19
+  const padding = ' '.repeat(10); // 박스를 아스키 아트 오른쪽으로 밀기 위한 공백
+
+  const combinedLines = artLines.map((line, index) => {
+    if (index >= insertLineIndex && index - insertLineIndex < boxLines.length) {
+      // 박스가 시작하는 줄과 박스의 나머지 줄을 병합
+      const boxLine = boxLines[index - insertLineIndex];
+      return `${line}${padding}${boxLine}`;
+    }
+    return line; // 나머지 줄은 그대로 유지
+  });
+
+  return combinedLines.join('\n'); // 최종 출력
 }
